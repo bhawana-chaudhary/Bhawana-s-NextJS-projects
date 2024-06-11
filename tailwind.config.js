@@ -59,14 +59,17 @@ module.exports = {
         mainRow: "calc(100% + 20px)",
         threeCard: "calc(33.33% - 20px)",
         colFour: "calc(25% - 20px)",
-        halfWidth: "calc(50% - 20px)",
-        "one&half": "145%",
-
-        iconBeforeW: "calc(100% + 30px)",
-        sectionGradient: "calc(100% + 148px)",
       },
-      height: {
-        iconBeforeH: "calc(100% + 30px)"
+      fontFamily: {
+        rubik: "Rubik, sans-serif",
+        inter: "Inter, sans-serif",
+        mulish: "Mulish, sans-serif",
+        JakartaSans: "Plus Jakarta Sans, sans-serif",
+        figtree: "Figtree, sans-serif",
+        playfairDisplay: "Playfair Display, serif",
+        poppins: "Poppins, sans-serif",
+        nanumMyeongjo: "Nanum Myeongjo, serif",
+        nunitoSans: "Nunito Sans, sans-serif",
       },
       colors: {
         black: "#000",
