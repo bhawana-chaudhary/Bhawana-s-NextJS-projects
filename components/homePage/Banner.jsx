@@ -52,7 +52,7 @@ const spanText = (textElement) => {
   textElement.innerHTML = spaned;
 };
 
-export default function Banner({ setIsTitleHovered }) {
+export default function Banner({ setIsTitleHovered, setBannerButtonHovered }) {
   // ---------tab--
   // const [selectedBanner, setSelectedBanner] = useState(asliBannerImgData[0]);
   // const handleBannerClick = (banner) => {
@@ -133,8 +133,6 @@ export default function Banner({ setIsTitleHovered }) {
   const circleSvgOuterRefs = useRef([]);
   useEffect(() => {
     const duration = 26; // Duration of the tab animation in seconds
-
-    // Iterate over each tab and initialize the animation for the corresponding circle
     asliBannerImgData.forEach((banner) => {
       const currentCircle = circleSvgRefs.current[banner.id - 1];
       const currentCircleOuter = circleSvgOuterRefs.current[banner.id - 1];
@@ -177,16 +175,21 @@ export default function Banner({ setIsTitleHovered }) {
     });
   }, [selectedBanner, animationDirection]);
 
+  // ------------
+
+  const handleMouseEnter = () => setBannerButtonHovered(true);
+  const handleMouseLeave = () => setBannerButtonHovered(false);
+
   return (
     <>
-      <section className="asliBanner relative w-full min-h-[100vh] py-24 flex items-end px-28 overflow-hidden ">
+      <section className="asliBanner relative w-full min-h-[100vh] py-24 flex items-end px-28 overflow-hidden desktop:px-20 desktop:py-14 lg:py-7 lg:px-5 ">
         <div
           className={`banner_bgWrap absolute top-0 right-0 w-full h-full bg-black `}
         >
           <div
             className={`${
               Style.img_wrapper_overlay
-            } img_wrapper absolute top-[50%] right-0 transform translate-y-[-50%] w-[78vw] h-[78vw] rounded-s-[50%] overflow-hidden  ${
+            } img_wrapper absolute top-[50%] right-0 transform translate-y-[-50%] w-[125vh] h-[125vh] rounded-s-[50%] overflow-hidden xxl-up:w-[130vh] xxl-up:h-[130vh] desktopLarge:w-[110vh] desktopLarge:h-[110vh] xl:w-[90vw] xl:h-[100vh] md:w-[100vh] md:h-[100vh] md:right-auto md:left-0  ${
               animationDirection === "in"
                 ? Style.imgOverlayIn
                 : Style.imgOverlay
@@ -215,30 +218,46 @@ export default function Banner({ setIsTitleHovered }) {
           </div>
         </div>
 
-        <div className="banner_content z-10 ">
-          <div
-            className={`${Style.bannerMainContent} relative bannerMainContent mb-16 `}
-            onMouseEnter={() => setIsTitleHovered(true)}
-            onMouseLeave={() => setIsTitleHovered(false)}
-          >
-            <Link href="/" className={`${Style.redirect_link}`}>
-              .
-            </Link>
-            {selectedBanner.mainTitle && (
-              <h1
-                className={`${Style.main_title} swift-up-text text-[154px] leading-[1.3] text-[#fdf9cf] font-nanumMyeongjo font-medium cursor-none `}
-                ref={headlineRef}
+        <div className="banner_content relative w-full z-10 ">
+          <div className=" relative w-full flex flex-wrap justify-between  mb-16 lg:block desktop:mb-10 lg:mb-6 ">
+            <div className=" relative  w-[calc(100%-169px)] lg:w-full ">
+              <div
+                className={`${Style.bannerMainContent} relative w-fit bannerMainContent `}
+                onMouseEnter={() => setIsTitleHovered(true)}
+                onMouseLeave={() => setIsTitleHovered(false)}
               >
-                {selectedBanner.mainTitle}
-              </h1>
-            )}
+                <Link href="/" className={`${Style.redirect_link}`}>
+                  .
+                </Link>
+                {selectedBanner.mainTitle && (
+                  <h1
+                    className={`${Style.main_title} swift-up-text text-[154px] leading-[1.3] text-[#fdf9cf] font-nanumMyeongjo font-medium cursor-none desktopLarge:text-[110px] desktop:text-[80px] tablet:text-[65px] phablet:text-[52px] sm:text-[38px] `}
+                    ref={headlineRef}
+                  >
+                    {selectedBanner.mainTitle}
+                  </h1>
+                )}
+              </div>
+            </div>
+            <div
+              className=" relative group w-full max-w-[169px] h-[169px] border-solid border-[2px] border-white rounded-[50%] flex justify-center items-center transition duration-300 ease-in-out desktopLarge:max-w-[150px] desktopLarge:h-[150px] desktop:max-w-[140px] desktop:h-[140px] lg:mt-5 lg:max-w-[120px] lg:h-[120px] "
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Link href="/" className={`${Style.redirect_link}`}>
+                .
+              </Link>
+              <span className=" text-[16px] text-white font-nunitoSans group-hover:text-[#fdf9cf] tablet:text-[15px] md:text-[14px] ">
+                Explore Project
+              </span>
+            </div>
           </div>
           <div className="listWrapper">
             <ul className=" list-disc pl-5 ">
               {asliBannerImgData.map((bannerBg, index) => (
                 <li
                   key={index}
-                  className={` relative text-[16px] py-1 mb-2 pl-5 cursor-pointer opacity-[0.6] transition-opacity duration-300 ease-in-out hover:opacity-[1] ${
+                  className={` relative text-[16px] py-1 mb-2 pl-5 cursor-pointer opacity-[0.6] transition-opacity duration-300 ease-in-out hover:opacity-[1] lg:text-[14px] ${
                     selectedBanner.id === bannerBg.id
                       ? " opacity-[1] text-[#fdf9cf] "
                       : " text-white "
@@ -249,7 +268,7 @@ export default function Banner({ setIsTitleHovered }) {
                     {bannerBg.listText}
                   </span>
                   <div
-                    className={` ${Style.circleSvgImg} circleSvgImg absolute  top-0 left-[-28px]  w-full max-w-[35px] h-full max-h-[35px]`}
+                    className={` ${Style.circleSvgImg} circleSvgImg absolute  top-0 left-[-28px]  w-full max-w-[35px] h-full max-h-[35px]  lg:max-w-[30px] lg:max-h-[30px] lg:left-[-25px] `}
                     ref={(el) => {
                       if (el) {
                         circleSvgRefs.current[index] =

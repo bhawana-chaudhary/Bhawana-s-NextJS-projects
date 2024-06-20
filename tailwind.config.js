@@ -12,6 +12,15 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        xxl: { max: "1699px" },
+        // => @media (max-width: 1699px) { ... }
+
+        "xxl-up": { min: "1699px" },
+        // => @media (min-width: 1699px) { ... }
+
+        desktopLarge: { min: "1280px", max: "1699px" },
+        // => @media (min-width: 1280px and max-width: 1699px) { ... }
+
         xl: { max: "1279px" },
         // => @media (max-width: 1279px) { ... }
 
