@@ -1,0 +1,59 @@
+.container {
+  width: 100%;
+  max-width: 1390px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.redirect_link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  text-decoration: none;
+  z-index: 5;
+}
+
+.button_default {
+  position: relative;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  background-color: #1bbc9b;
+  border-radius: 5px;
+  padding: 15px 30px;
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(0.9);
+  }
+  &.button_default2 {
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+.headerSubMenuWrap {
+  li {
+    position: relative;
+    &:hover {
+      .innerSubMenu_wrap {
+        left: 100%;
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+      }
+    }
+    .innerSubMenu_wrap {
+      left: calc(100% + 20px);
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

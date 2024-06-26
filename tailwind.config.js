@@ -79,6 +79,8 @@ module.exports = {
         poppins: "Poppins, sans-serif",
         nanumMyeongjo: "Nanum Myeongjo, serif",
         nunitoSans: "Nunito Sans, sans-serif",
+        // roboto: "Roboto, sans-serif",
+        reenieBeanie: "Reenie Beanie, cursive",
       },
       colors: {
         black: "#000",
