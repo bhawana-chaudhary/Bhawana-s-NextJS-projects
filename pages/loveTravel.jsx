@@ -6,6 +6,14 @@ import Intro from "../components/loveTravel/Intro";
 import ColThreeSmallCard from "../components/loveTravel/ColThreeSmallCard";
 import ColThreeCard from "../components/loveTravel/ColThreeCard";
 import IntroWithSearch from "../components/loveTravel/IntroWithSearch";
+import ColFourCard from "../components/loveTravel/ColFourCard";
+import SliderWithParallax from "../components/loveTravel/SliderWithParallax";
+import {
+  intro,
+  intro2,
+  parallaxBlade,
+  parallaxBlade2,
+} from "../public/data/loveTravelData";
 import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
@@ -32,10 +40,16 @@ export default function loveTravel() {
         <FontStyles />
         <Header />
         <Banner />
-        <Intro />
+        <Intro data={intro} />
         <ColThreeSmallCard />
         <ColThreeCard />
         <IntroWithSearch />
+        <Intro data={intro2} />
+        <ColFourCard />
+        <SliderWithParallax data={parallaxBlade} />
+        <ColFourCard />
+        {/* <SliderWithParallax data={parallaxBlade2} />
+        <ColFourCard /> */}
       </div>
     </>
   );
