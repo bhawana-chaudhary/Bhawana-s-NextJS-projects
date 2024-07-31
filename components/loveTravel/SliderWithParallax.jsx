@@ -27,7 +27,7 @@ export default function SliderWithParallax({ data }) {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -40,7 +40,7 @@ export default function SliderWithParallax({ data }) {
 
   return (
     <>
-      <section className=" sliderWithParallax relative w-full py-[120px] ">
+      <section className=" sliderWithParallax relative w-full py-[120px] overflow-hidden ">
         <div
           className={`bg_image absolute top-0 left-0 w-[100vw] h-[100vh] z-[-3] ${Style.black_overlay}`}
           ref={imageWrap2Ref}

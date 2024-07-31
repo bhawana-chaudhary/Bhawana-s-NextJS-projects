@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Style from "../../styles/loveTravel.module.scss";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Intro({ data }) {
+  // const progressBarRef = useRef(null);
+
+  const progressBarRef = useRef([]);
+
+  useEffect(() => {
+    progressBarRef.current.forEach((progressRef, index) => {
+      if (progressRef) {
+        const progressValue = data?.listContent[index]?.progressValue || 0;
+        gsap.fromTo(
+          progressRef,
+          { value: 0 },
+          {
+            value: progressValue,
+            duration: 2,
+            ease: "power1.inOut",
+            scrollTrigger: {
+              trigger: progressRef,
+              start: "top bottom",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    });
+  }, [data]);
+
   return (
     <>
       <section
@@ -66,17 +96,31 @@ export default function Intro({ data }) {
                       data?.textWhite === true
                         ? "text-white"
                         : " text-[#6E6E6E]"
-                    } pb-5 mb-5 relative flex items-center after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-[#FFFFFF2E] last-of-type:after:hidden last-of-type:mb-0 `}
+                    } ${
+                      listText?.bottomLine === true ? Style.listBottomLine : ""
+                    } ${
+                      Style.animate_bottomLine
+                    }  pb-5 mb-5 relative flex items-center `}
                   >
-                    <div className=" relative max-w-[15px] h-[15px] mr-5 ">
-                      <Image
-                        src={listText.listIcon}
-                        width={50}
-                        height={50}
-                        alt="icon"
-                        className=" w-full h-full object-contain "
-                      />
-                    </div>
+                    {listText.progressValue && (
+                      <progress
+                        className={`${Style.progress} progress absolute bottom-0 left-0 w-full h-[5px] rounded-[2px] overflow-hidden `}
+                        ref={(el) => (progressBarRef.current[index] = el)}
+                        value={listText.progressValue || 0}
+                        max="100"
+                      ></progress>
+                    )}
+                    {listText.listIcon && (
+                      <div className=" relative max-w-[15px] h-[15px] mr-5 ">
+                        <Image
+                          src={listText.listIcon}
+                          width={50}
+                          height={50}
+                          alt="icon"
+                          className=" w-full h-full object-contain "
+                        />
+                      </div>
+                    )}
                     <span>{listText.listItem}</span>
                   </li>
                 ))}

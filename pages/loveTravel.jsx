@@ -8,11 +8,18 @@ import ColThreeCard from "../components/loveTravel/ColThreeCard";
 import IntroWithSearch from "../components/loveTravel/IntroWithSearch";
 import ColFourCard from "../components/loveTravel/ColFourCard";
 import SliderWithParallax from "../components/loveTravel/SliderWithParallax";
+import IntroWithVideo from "../components/loveTravel/IntroWithVideo";
+import SliderWithParallaxTwo from "../components/loveTravel/SliderWithParallaxTwo";
+import ColThreeCardTwo from "../components/loveTravel/ColThreeCardTwo";
+import IntroWithImage from "../components/loveTravel/IntroWithImage";
 import {
   intro,
   intro2,
   parallaxBlade,
   parallaxBlade2,
+  introWithVideo,
+  intro6,
+  colThreeCardDataTwo,
 } from "../public/data/loveTravelData";
 import { Poppins } from "next/font/google";
 
@@ -47,9 +54,12 @@ export default function loveTravel() {
         <Intro data={intro2} />
         <ColFourCard />
         <SliderWithParallax data={parallaxBlade} />
+        <IntroWithVideo data={introWithVideo} />
+        <SliderWithParallaxTwo data={parallaxBlade2} />
+        <Intro data={intro6} />
+        <ColThreeCardTwo data={colThreeCardDataTwo} />
+        <IntroWithImage />
         <ColFourCard />
-        {/* <SliderWithParallax data={parallaxBlade2} />
-        <ColFourCard /> */}
       </div>
     </>
   );
